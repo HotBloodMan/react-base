@@ -2,26 +2,27 @@
 import React from 'react';
 import  Child from './Child'
 export default class Father extends React.Component { 
-    constructor(props) {
-        super(props);
+         
+    constructor(props){
+        super(props)
         this.state={
-            name: '我是父组件的值,我将把我的值给子组件'
+            name:'Father send 3 to Child'
         }
     }
-     childToFatherValue(data) {
-         this.setState({
-             childValue:data
-         })
-     }
-    render() {
+
+    sendValueToFather(data){
+        this.setState({childValue:data})
+    }
+
+    render(){
         return(
             <div>
-               <h1>我是父组件</h1>
-               <h1>我是来自子组件的值-{this.state.childValue} </h1>
-               <Child fatherTochildValue = {this.state.name}
-               goFather={this.childToFatherValue.bind(this)}
-               ></Child>
+            <h1>Father------{this.state.childValue}</h1>
+            <Child goFather={this.sendValueToFather.bind(this)} 
+            fathertoSend={this.state.name}
+            ></Child>
             </div>
         );
     }
+
 }
